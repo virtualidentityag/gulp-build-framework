@@ -90,7 +90,7 @@ module.exports = {
 	handlebars: {
 		templateWrap: 'Handlebars.template(<%= contents %>)',
 		partialWrap: 'Handlebars.registerPartial(<%= processPartialName(file.relative) %>, Handlebars.template(<%= contents %>));',
-		namespace: 'global.configuration.data.tpl',
+		namespace: 'ffglobal.configuration.data.tpl',
 		noRedeclare: true
 	},
 
