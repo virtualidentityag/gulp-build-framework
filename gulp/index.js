@@ -37,8 +37,6 @@ gulp.task('build:dev', function (callback) {
 			'static:hb:indexr'
 		],
 		[
-			'resources:less',
-			'components:less',
 			'resources:sass',
 			'components:sass',
 			'webpack:resources:react',
@@ -109,8 +107,6 @@ gulp.task('serve', function (callback) {
 	runSequence(
 		'build:dev',
 		[
-			'watch:resources:less',
-			'watch:components:less',
 			'watch:components:sass',
 			'watch:resources:sass',
 			'watch:jshint:components',

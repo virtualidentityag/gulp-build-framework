@@ -24,7 +24,6 @@ module.exports = {
 			cleanCss: true,
 			cssStats: true,
 			sass: true,
-			less: false,
 			favicons: true,
 			handlebars: true,
 			iconfont: true,
@@ -121,8 +120,6 @@ module.exports = {
 	image: {
 		verbose: true
 	},
-
-	less: {},
 
 	livereload: {
 		port: 35729
