@@ -31,8 +31,7 @@ module.exports = {
 			linting: true,
 			markdown: false,
 			typescript: true,
-			uglify: true,
-			webpack: true
+			uglify: true
 		},
 		externalResources: {},
 		reactEntryPoints: []
