@@ -117,8 +117,10 @@ gulp.task('serve', function (callback) {
 			'watch:angularTemplates',
 			'watch:json',
 			'watch:html',
-			'watch:typescript:resources',
-			'watch:typescript:components',
+			// 'watch:typescript:resources',
+			// 'watch:typescript:components',
+			'webpack:resources:ts',
+			'webpack:components:ts',
 			'watch:static:hb',
 			'watch:icons'
 		],
