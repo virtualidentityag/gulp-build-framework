@@ -65,7 +65,7 @@ gulp.task('watch:eslint:resources', function () {
 gulp.task('watch:eslint:components', function () {
 
 	if (config.global.tasks.linting) {
-		config.global.resources.forEach(function(currentComponent, index) {
+		config.global.components.forEach(function(currentComponent) {
 			watch([
 				config.global.src + currentComponent + '/**/*.js',
 				'!' + config.global.src + currentComponent + '/**/vendor/**/*.js'
