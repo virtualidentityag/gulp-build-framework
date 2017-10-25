@@ -3,6 +3,8 @@ var mergeStream = require('merge-stream');
 var config = require('./../config');
 var debug = require('gulp-debug');
 var filter = require('gulp-filter');
+var watch = require('gulp-watch');
+var runSequence = require('run-sequence');
 
 
 gulp.task('copy:dev:js', function () {
