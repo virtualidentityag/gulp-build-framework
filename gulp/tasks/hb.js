@@ -176,3 +176,13 @@ gulp.task('static:hb:indexr', function () {
 
 
 });
+
+gulp.task('watch:static:hb:indexr', function () {
+
+	watch(config.global.src + '/pages/*.html', function () {
+		runSequence(
+			['static:hb:indexr']
+		);
+	});
+
+});

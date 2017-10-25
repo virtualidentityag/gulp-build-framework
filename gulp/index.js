@@ -105,6 +105,8 @@ gulp.task('serve', function (callback) {
 	runSequence(
 		'build:dev',
 		[
+			'watch:static:hb:indexr',
+			'watch:components:js',
 			'watch:components:sass',
 			'watch:resources:sass',
 			'watch:jshint:components',
