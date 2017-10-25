@@ -5,6 +5,7 @@ var svgicons2svgfont = require('gulp-svgicons2svgfont');
 var svg2ttf = require('gulp-svg2ttf');
 var ttf2eot = require('gulp-ttf2eot');
 var ttf2woff = require('gulp-ttf2woff');
+var watch = require('gulp-watch');
 var config = require('./../config');
 var runSequence = require('run-sequence');
 var mergeStream = require('merge-stream');
@@ -58,5 +59,19 @@ gulp.task('convertTtfToWoff', function () {
 	return gulp.src(config.global.dev + '/resources/fonts/icons/*.ttf')
 		.pipe(ttf2woff())
 		.pipe(gulp.dest(config.global.dev + '/resources/fonts/icons/'));
+
+});
+
+gulp.task('watch:icons', function() {
+
+	watch(config.global.src + '/_icons/*.svg', function () {
+		runSequence(
+			'iconfont',
+			[
+				'static:hb',
+				'resources:sass'
+			]
+		);
+	});
 
 });

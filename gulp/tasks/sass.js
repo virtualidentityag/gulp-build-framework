@@ -96,14 +96,22 @@ gulp.task('watch:resources:sass', function () {
 	if (config.global.tasks.sass) {
 		config.global.resources.forEach(function(currentResource) {
 			watch([
-				config.global.src + currentResource + '/scss/**/*.scss',
-				config.global.src + currentResource + '/react/**/*.scss'
+				config.global.src + currentResource + '/scss/**/*.scss'
 			], function() {
 				runSequence(
 					['lint:resources:sass'],
 					['resources:sass']
 				);
 			});
+		});
+
+		watch([
+			config.global.src + '../.iconfont' + '/*.scss'
+		], function() {
+			runSequence(
+				['lint:resources:sass'],
+				['resources:sass']
+			);
 		});
 	}
 });

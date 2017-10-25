@@ -117,7 +117,8 @@ gulp.task('serve', function (callback) {
 			'watch:html',
 			'watch:typescript:resources',
 			'watch:typescript:components',
-			'watch:static:hb'
+			'watch:static:hb',
+			'watch:icons'
 		],
 		'connect',
 		'livereload:init',
