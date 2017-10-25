@@ -45,6 +45,9 @@ gulp.task('static:hb', function () {
 			},
 			stringify: function(object) {
 				return JSON.stringify(object);
+			},
+			code: function(content) {
+				return content.fn();
 			}
 		})
 		// global partials
