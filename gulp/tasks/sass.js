@@ -64,7 +64,7 @@ gulp.task('components:sass', function () {
  * @TODO throws warnings now, define linting rules
  */
 gulp.task('lint:resources:sass', function () {
-	if (config.global.tasks.sass && config.global.tasks.linting) {
+	if (config.global.tasks.sass && config.global.tasks.linting && false) {
 		return mergeStream(config.global.resources.map(function (currentResource) {
 			return gulp.src([config.global.src + currentResource + '/scss/**/*.s+(a|c)ss',
 				'!' + config.global.src + currentResource + '/scss/**/_icons.s+(a|c)ss',
@@ -78,7 +78,7 @@ gulp.task('lint:resources:sass', function () {
 });
 
 gulp.task('lint:components:sass', function () {
-	if (config.global.tasks.sass && config.global.tasks.linting) {
+	if (config.global.tasks.sass && config.global.tasks.linting && false) {
 		return mergeStream(config.global.components.map(function (currentComponent) {
 			return gulp.src(config.global.src + currentComponent + '/**/*.s+(a|c)ss')
 				.pipe(cached('sass'))
