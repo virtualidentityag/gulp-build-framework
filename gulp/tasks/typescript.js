@@ -9,7 +9,6 @@ var runSequence = require('run-sequence');
 var typescript = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
 
-var typescriptConfig = require('./../../typescript.config.js');
 var config = require('./../config');
 
 gulp.task('typescript:resources', function() {
@@ -20,7 +19,9 @@ gulp.task('typescript:resources', function() {
 			return gulp.src(config.global.src + currentResource + '/ts/*.ts')
 				.pipe(sourcemaps.init())
 				.pipe(typescript({
-					declaration: true
+					declaration: true,
+					target: 'ES5',
+					module: 'umd'
 				}))
 				.pipe(sourcemaps.write('.'))
 				.pipe(gulp.dest(config.global.dev + currentResource + '/ts/'));
@@ -37,7 +38,9 @@ gulp.task('typescript:components', function() {
 			return gulp.src(config.global.src + config.global.components[index] + '/**/*.ts')
 				.pipe(sourcemaps.init())
 				.pipe(typescript({
-					declaration: true
+					declaration: true,
+					target: 'ES5',
+					module: 'umd'
 				}))
 				.pipe(sourcemaps.write('.'))
 				.pipe(gulp.dest(config.global.dev + currentResource + config.global.components[index]));
