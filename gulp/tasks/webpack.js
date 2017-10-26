@@ -79,16 +79,12 @@ gulp.task('watch:webpack:resources:ts', function () {
 gulp.task('watch:webpack:components:ts', function () {
 
 	if (config.global.tasks.webpack) {
-
-		let components = [];
 		config.global.components.map( function(currentComponent) {
-			components.push(config.global.src + currentComponent + '/**/*.ts');
-		});
-
-		watch(components, function () {
-			runSequence(
-				['webpack:components:ts']
-			);
+			watch(config.global.src + currentComponent + '/**/*.ts', function () {
+				runSequence(
+					['webpack:components:ts']
+				);
+			});
 		});
 	}
 

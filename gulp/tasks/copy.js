@@ -163,15 +163,11 @@ gulp.task('copy:dist:hbs', function () {
 
 
 gulp.task('watch:components:js', function() {
-	let files = [];
-
 	config.global.components.forEach(function(currentComponent) {
-		files.push(config.global.src + currentComponent +'/**/*.{js}');
-	});
-
-	watch(files, function () {
-		runSequence(
-			['copy:dev:components:js']
-		);
+		watch(config.global.src + currentComponent +'/**/*.js', function () {
+			runSequence(
+				['copy:dev:components:js']
+			);
+		});
 	});
 });
