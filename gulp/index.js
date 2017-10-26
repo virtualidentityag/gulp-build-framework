@@ -39,8 +39,8 @@ gulp.task('build:dev', function (callback) {
 		[
 			'resources:sass',
 			'components:sass',
-			'typescript:resources',
-			'typescript:components',
+			'webpack:resources:ts',
+			'webpack:components:ts',
 			'copy:dev:components:js'
 		],
 		[
@@ -119,8 +119,8 @@ gulp.task('serve', function (callback) {
 			'watch:html',
 			// 'watch:typescript:resources',
 			// 'watch:typescript:components',
-			'webpack:resources:ts',
-			'webpack:components:ts',
+			'watch:webpack:resources:ts',
+			'watch:webpack:components:ts',
 			'watch:static:hb',
 			'watch:icons'
 		],
