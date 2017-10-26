@@ -90,7 +90,7 @@ gulp.task('watch:zetzer', function () {
 		config.global.src + '/partials/**/*.html',
 		config.global.src + '/_mock/**/*.json',
 		config.global.dev + '/resources/js/handlebars.templates.js'
-	], config.global.watch, function () {
+	], config.watch, function () {
 		runSequence('zetzer');
 	});
 

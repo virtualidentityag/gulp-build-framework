@@ -75,7 +75,7 @@ gulp.task('watch:handlebars', function () {
 			watchFiles.push(config.global.src + currentComponent + '/**/hbs/**/*.hbs');
 		});
 
-		watch(watchFiles, config.global.watch, function () {
+		watch(watchFiles, config.watch, function () {
 			runSequence('handlebars');
 		});
 	} else {

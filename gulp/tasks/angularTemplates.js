@@ -31,7 +31,7 @@ gulp.task('watch:angularTemplates', function () {
 	if (config.global.tasks.angular) {
 		watch([
 			config.global.src + '/resources/templates/angular/**/*.html'
-		], config.global.watch, function () {
+		], config.watch, function () {
 			runSequence('angularTemplates')
 		});
 	} else {

@@ -53,7 +53,7 @@ gulp.task('watch:typescript:resources', function () {
 
 	if (config.global.tasks.typescript) {
 		config.global.resources.forEach(function (currentResource) {
-			watch(config.global.src + currentResource + '/ts/**/*.ts', config.global.watch, function () {
+			watch(config.global.src + currentResource + '/ts/**/*.ts', config.watch, function () {
 				runSequence(
 					['typescript:resources']
 				);
@@ -72,7 +72,7 @@ gulp.task('watch:typescript:components', function () {
 			components.push(config.global.src + currentComponent + '/**/*.ts');
 		});
 
-		watch(components, config.global.watch, function () {
+		watch(components, config.watch, function () {
 			runSequence(
 				['typescript:components']
 			);

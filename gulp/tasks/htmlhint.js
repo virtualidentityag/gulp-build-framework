@@ -19,7 +19,7 @@ gulp.task('watch:html', function () {
 
 	watch([
 		config.global.dev + '/*.html'
-	], config.global.watch, function () {
+	], config.watch, function () {
 		runSequence('htmlhint')
 	});
 
