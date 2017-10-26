@@ -94,7 +94,7 @@ gulp.task('watch:static:hb', function () {
 		files.push(config.global.src + currentComponent +'/**/*.{html,handlebars,hbs}');
 	});
 
-	watch(files, function () {
+	watch(files, config.global.watch, function () {
 		runSequence(
 			['static:hb']
 		);
@@ -179,7 +179,7 @@ gulp.task('static:hb:indexr', function () {
 
 gulp.task('watch:static:hb:indexr', function () {
 
-	watch(config.global.src + '/pages/*.html', function () {
+	watch(config.global.src + '/pages/*.html', config.global.watch, function () {
 		runSequence(
 			['static:hb:indexr']
 		);

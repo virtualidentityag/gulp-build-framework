@@ -2,6 +2,8 @@ var fs = require('fs');
 var _ = require('lodash');
 var cwd = process.cwd();
 var projectConfig = require(cwd + '/projectConfig.json');
+var os = require('os');
+var isWin = /^win/.test(os.platform());
 
 var src = 'app';
 var dev = '.tmp';
@@ -16,6 +18,7 @@ module.exports = {
 		dist: dist,
 		docs: docs,
 		node: node,
+		isWin: isWin,
 		resources: ['/resources'],
 		components: ['/components'],
 		handlebarsHelper: '/js/handlebars.helper.js',
@@ -158,6 +161,10 @@ module.exports = {
 		sourcemaps: false,
 		folders: ['js', 'ts', 'react'],
 		ignoreList: []
+	},
+
+	watch: {
+		usePolling: isWin
 	},
 
 	zetzer: {

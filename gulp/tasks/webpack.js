@@ -66,7 +66,7 @@ gulp.task('watch:webpack:resources:ts', function () {
 
 	if (config.global.tasks.webpack) {
 		config.global.resources.forEach(function (currentResource) {
-			watch(config.global.src + currentResource + '/ts/**/*.ts', function () {
+			watch(config.global.src + currentResource + '/ts/**/*.ts', config.global.watch, function () {
 				runSequence(
 					['webpack:resources:ts']
 				);
@@ -80,7 +80,7 @@ gulp.task('watch:webpack:components:ts', function () {
 
 	if (config.global.tasks.webpack) {
 		config.global.components.map( function(currentComponent) {
-			watch(config.global.src + currentComponent + '/**/*.ts', function () {
+			watch(config.global.src + currentComponent + '/**/*.ts', config.global.watch, function () {
 				runSequence(
 					['webpack:components:ts']
 				);

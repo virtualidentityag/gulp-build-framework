@@ -64,7 +64,7 @@ gulp.task('convertTtfToWoff', function () {
 
 gulp.task('watch:icons', function() {
 
-	watch(config.global.src + '/_icons/*.svg', function () {
+	watch(config.global.src + '/_icons/*.svg', config.global.watch, function () {
 		runSequence(
 			'iconfont',
 			[

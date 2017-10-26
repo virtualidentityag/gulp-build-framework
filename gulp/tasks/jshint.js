@@ -52,7 +52,7 @@ gulp.task('watch:jshint:resources', function () {
 			watch([
 				config.global.src + currentResource + '/js/**/*.js',
 				'!' + config.global.src + currentResource + '/js/vendor/**/*.js',
-			], function () {
+			], config.global.watch, function () {
 				runSequence('jshint:resources');
 			});
 		});
@@ -69,7 +69,7 @@ gulp.task('watch:jshint:components', function () {
 			watch([
 				config.global.src + currentComponent + '/**/*.js',
 				'!' + config.global.src + currentComponent + '/**/vendor/**/*.js'
-			], function () {
+			], config.global.watch, function () {
 				runSequence('jshint:components');
 			});
 		});
