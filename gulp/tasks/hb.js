@@ -5,6 +5,7 @@ var globule = require('globule');
 var path = require('path');
 var replace = require('gulp-replace');
 var mergeStream = require('merge-stream');
+var rename = require('gulp-rename');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 var notify = require("gulp-notify");
@@ -82,6 +83,7 @@ gulp.task('static:hb', function () {
 				message: error.message
 			};
 		}))
+		.pipe(rename({extname: ".html"}))
 		.pipe(gulp.dest(config.global.dev));
 
 });
