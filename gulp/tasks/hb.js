@@ -114,7 +114,7 @@ gulp.task('static:hb:indexr', function () {
 
 	// read all files
 	let filepaths = globule.find([
-		config.global.src + '/pages/*.html'
+		config.global.src + '/pages/*.{html,handlebars,hbs}'
 	]);
 
 	let lastCategory = '';
@@ -179,7 +179,7 @@ gulp.task('static:hb:indexr', function () {
 
 gulp.task('watch:static:hb:indexr', function () {
 
-	watch(config.global.src + '/pages/*.html', config.watch, function () {
+	watch(config.global.src + '/pages/*.{html,handlebars,hbs}', config.watch, function () {
 		runSequence(
 			['static:hb:indexr']
 		);
