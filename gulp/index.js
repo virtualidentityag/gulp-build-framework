@@ -29,8 +29,7 @@ gulp.task('build:dev', function (callback) {
 			'copy:dev:npm:css'
 		],
 		[
-			'handlebars',
-			'angularTemplates'
+			'handlebars'
 		],
 		[
 			'static:hb',
@@ -114,7 +113,6 @@ gulp.task('serve', function (callback) {
 			'watch:eslint:components',
 			'watch:eslint:resources',
 			'watch:handlebars',
-			'watch:angularTemplates',
 			'watch:json',
 			'watch:html',
 			'watch:webpack:resources:ts',

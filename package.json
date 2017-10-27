@@ -21,7 +21,6 @@
     "del": "2.2.2",
     "globule": "1.1.0",
     "gulp": "3.9.1",
-    "gulp-angular-templatecache": "1.8.0",
     "gulp-babel": "7.0.0",
     "gulp-cached": "1.1.1",
     "gulp-clean-css": "3.3.1",
