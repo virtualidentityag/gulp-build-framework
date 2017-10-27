@@ -165,18 +165,7 @@ module.exports = {
 
 	watch: {
 		usePolling: isWin
-	},
-
-	zetzer: {
-		partials: src + '/partials',
-		templates: src + '/partials/layout',
-		dot_template_settings: {
-			strip: false,
-			varname: 'ftf'
-		},
-		env: require('./tasks/zetzerHelper')
 	}
-
 };
 
 if (projectConfig) {
