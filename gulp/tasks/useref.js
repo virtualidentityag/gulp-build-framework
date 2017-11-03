@@ -14,6 +14,8 @@ gulp.task('useref', function () {
 			noAssets: true
 		}))
 		.pipe(filter(['**/*.html']))
+		.pipe(replace('"./', '"./application_root/../'))
+		.pipe(replace('[./', '[./application_root/../'))
 		.pipe(gulp.dest(config.global.dist));
 
 });
@@ -26,9 +28,6 @@ gulp.task('useref:assets', function () {
 	return gulp.src(config.global.src + '/resources/_useref.html')
 		.pipe(zetzer(config.zetzer))
 		.pipe(useref())
-
-		.pipe(replace('"./', '"./application_root/../'))
-		.pipe(replace('[./', '[./application_root/../'))
 
 		.pipe(jsFilter)
 		.pipe(uglify(config.uglify))
