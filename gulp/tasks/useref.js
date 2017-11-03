@@ -4,6 +4,7 @@ var zetzer = require('gulp-zetzer');
 var filter = require('gulp-filter');
 var uglify = require('gulp-uglify');
 var cleanCss = require('gulp-clean-css');
+var replace = require('gulp-replace');
 var config = require('./../config');
 
 gulp.task('useref', function () {
@@ -25,6 +26,9 @@ gulp.task('useref:assets', function () {
 	return gulp.src(config.global.src + '/resources/_useref.html')
 		.pipe(zetzer(config.zetzer))
 		.pipe(useref())
+
+		.pipe(replace('"./', '"./application_root/../'))
+		.pipe(replace('[./', '[./application_root/../'))
 
 		.pipe(jsFilter)
 		.pipe(uglify(config.uglify))
