@@ -8,7 +8,7 @@ const watch = require('gulp-watch');
 const runSequence = require('run-sequence');
 const notify = require("gulp-notify");
 const handlebars = require('handlebars');
-const packageData = require(config.cwd + '/package.json');
+const packageData = require(config.global.cwd + '/package.json');
 
 const hbsParser = require('./../lib/hbs-parser');
 const iconParser = require('./../lib/icon-parser');
