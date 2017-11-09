@@ -16,10 +16,6 @@ const hbsParser = require('./../lib/hbs-parser');
 const iconParser = require('./../lib/icon-parser');
 
 
-require.extensions['.html'] = function (module, filename) {
-	module.exports = handlebars.compile(fs.readFileSync(filename, 'utf8'));
-};
-
 gulp.task('static:hb', function () {
 
 	//icon data
@@ -30,21 +26,22 @@ gulp.task('static:hb', function () {
 	};
 
 	let hbStream = hbsParser.createHbsGulpStream(
-		config.global.src + '/partials/**/*.{html,handlebars,hbs}',
+		[
+			config.global.src + '/**/*.hbs',
+			'!' + config.global.src + '/pages/**'
+		],
 		hbsData,
 		[ config.global.src + '/_mock/**/*.json' ]
 	);
 
-	// component partials
+	// component data
 	config.global.components.map( function(currentComponent) {
 		hbStream
-			.partials(config.global.src + currentComponent + '/**/*.{html,handlebars,hbs}')
 			.data(config.global.src + currentComponent + '/**/*.json')
 	});
-	// dynamic partials
+	// resources data
 	config.global.resources.map( function(currentResource) {
 		hbStream
-			.partials(config.global.src + currentResource + '/**/*.hbs')
 			.data(config.global.src + currentResource + '/**/*.json');
 	});
 
@@ -53,7 +50,7 @@ gulp.task('static:hb', function () {
 	 * puts files to .tmp
 	 */
 	return gulp
-		.src(config.global.src + '/pages/' + '/*.{html,handlebars,hbs}')
+		.src(config.global.src + '/pages/**/*.hbs')
 		.pipe(hbStream)
 		.on('error', notify.onError(function (error) {
 			return {
@@ -68,10 +65,10 @@ gulp.task('static:hb', function () {
 
 
 gulp.task('watch:static:hb', function () {
-	let files = [config.global.src + '/partials/**/*.{html,handlebars,hbs}'];
+	let files = [config.global.src + '/partials/**/*.hbs'];
 
 	config.global.components.forEach(function(currentComponent) {
-		files.push(config.global.src + currentComponent +'/**/*.{html,handlebars,hbs}');
+		files.push(config.global.src + currentComponent +'/**/*.hbs');
 	});
 
 	watch(files, config.watch, function () {
@@ -95,7 +92,7 @@ gulp.task('static:hb:indexr', function () {
 
 	// read all files
 	let filepaths = globule.find([
-		config.global.src + '/pages/*.{html,handlebars,hbs}'
+		config.global.src + '/pages/*.hbs'
 	]);
 
 	let lastCategory = '';
@@ -129,7 +126,7 @@ gulp.task('static:hb:indexr', function () {
 
 gulp.task('watch:static:hb:indexr', function () {
 
-	watch(config.global.src + '/pages/*.{html,handlebars,hbs}', config.watch, function () {
+	watch(config.global.src + '/pages/*.hbs', config.watch, function () {
 		runSequence(
 			['static:hb:indexr']
 		);
