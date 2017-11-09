@@ -32,7 +32,11 @@ gulp.task('static:hb:aem', function () {
 		let sourceFile = filepaths[index];
 
 		//parse content data
-		let dataObject = hbsParser.parsePartialData(content, { package: packageData });
+		let dataObject = hbsParser.parsePartialData(content, {
+			package: packageData,
+			aemTask: true
+		});
+
 		if(!dataObject.hasOwnProperty('aemComponent')) {
 			// @TODO: Think about info/warning/error to console
 			continue;

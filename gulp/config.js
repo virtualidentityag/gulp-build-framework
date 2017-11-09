@@ -10,7 +10,6 @@ var dev = '.tmp';
 var dist = 'dist';
 var docs = 'documentation';
 var node = 'node_modules';
-var cwd = process.cwd();
 
 module.exports = {
 	global: {
