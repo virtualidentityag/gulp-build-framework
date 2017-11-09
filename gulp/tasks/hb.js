@@ -1,15 +1,17 @@
-const config = require('./../config');
 const gulp = require('gulp');
 const fs = require('fs');
 const globule = require('globule');
 const path = require('path');
+const replace = require('gulp-replace');
 const rename = require('gulp-rename');
 const watch = require('gulp-watch');
 const runSequence = require('run-sequence');
 const notify = require("gulp-notify");
 const handlebars = require('handlebars');
-const packageData = require(config.global.cwd + '/package.json');
+const cwd = process.cwd();
+const packageData = require(cwd + '/package.json');
 
+const config = require('./../config');
 const hbsParser = require('./../lib/hbs-parser');
 const iconParser = require('./../lib/icon-parser');
 
