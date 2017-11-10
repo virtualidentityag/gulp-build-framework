@@ -155,8 +155,6 @@ module.exports = {
 		}
 	},
 
-	typescript: {},
-
 	uglify: {
 		preserveComments: 'license',
 		sourcemaps: false,
