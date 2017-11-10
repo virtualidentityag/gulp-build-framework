@@ -1,15 +1,18 @@
-const gulp = require('gulp');
+const cwd = process.cwd();
+const debug = require('gulp-debug');
+const filter = require('gulp-filter');
+const frontMatter = require('gulp-front-matter');
 const fs = require('fs');
 const globule = require('globule');
-const path = require('path');
-const replace = require('gulp-replace');
-const rename = require('gulp-rename');
-const watch = require('gulp-watch');
-const runSequence = require('run-sequence');
-const notify = require("gulp-notify");
+const gulp = require('gulp');
 const handlebars = require('handlebars');
-const cwd = process.cwd();
+const notify = require("gulp-notify");
 const packageData = require(cwd + '/package.json');
+const path = require('path');
+const rename = require('gulp-rename');
+const replace = require('gulp-replace');
+const runSequence = require('run-sequence');
+const watch = require('gulp-watch');
 
 const config = require('./../config');
 const hbsParser = require('./../lib/hbs-parser');
@@ -44,6 +47,10 @@ gulp.task('static:hb', function () {
 	 */
 	return gulp
 		.src(config.global.src + '/pages/**/*.hbs')
+		.pipe(frontMatter({
+			property: 'data.frontMatter',
+			remove: true
+		}))
 		.pipe(hbStream)
 		.on('error', notify.onError(function (error) {
 			return {

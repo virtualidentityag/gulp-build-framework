@@ -1,7 +1,8 @@
 const hbsHelpers = require('./hbs-helpers');
 const hb = require('gulp-hb');
+const fm = require('front-matter');
 
-const createHbsGulpStream = (partials, dataObject, dataGlob, debug=false) => {
+const createHbsGulpStream = (partials, dataObject, dataGlob, debug=true) => {
 	// @TODO add possibility to inject helpers from external file
 
 	let hbStream = hb({ debug: debug })
@@ -23,16 +24,9 @@ const createHbsGulpStream = (partials, dataObject, dataGlob, debug=false) => {
 };
 
 const parsePartialData = (content, data={}) => {
-	if (/\{\{>/.test(content)) {
-		let matches = content.match(/\S*=('|").*('|")/g);
+	let frontMatterContent = fm(content);
 
-		matches.map(function(match) {
-			let elements = match.split('=');
-			let key = elements[0];
-
-			data[key] = elements[1].slice(1, -1);
-		});
-	}
+	Object.assign(data, frontMatterContent.attributes);
 
 	return data;
 };
