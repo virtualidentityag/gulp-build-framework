@@ -19,6 +19,7 @@ module.exports = {
 		docs: docs,
 		node: node,
 		isWin: isWin,
+		dataObject: 'data',
 		resources: ['/resources'],
 		components: ['/components'],
 		handlebarsHelper: '/js/handlebars.helper.js',

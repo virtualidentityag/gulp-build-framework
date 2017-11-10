@@ -14,36 +14,29 @@ const packageData = require(cwd + '/package.json');
 const config = require('./../config');
 const hbsParser = require('./../lib/hbs-parser');
 const iconParser = require('./../lib/icon-parser');
+const jsonParser = require('./../lib/json-parser');
 
 
 gulp.task('static:hb', function () {
 
 	//icon data
 	let iconNames = iconParser.getAllIconFileNamesLowerCase(config.global.src + '/_icons/*.svg');
-	let hbsData = {
+	let preData = {};
+
+	preData[config.global.dataObject] = {
 		'icons': iconNames,
 		'package': packageData
 	};
+
+	let hbsData = jsonParser.getAllJSONData(config.global.src + '/**/*.json', preData[config.global.dataObject]);
 
 	let hbStream = hbsParser.createHbsGulpStream(
 		[
 			config.global.src + '/**/*.hbs',
 			'!' + config.global.src + '/pages/**'
 		],
-		hbsData,
-		[ config.global.src + '/_mock/**/*.json' ]
+		hbsData
 	);
-
-	// component data
-	config.global.components.map( function(currentComponent) {
-		hbStream
-			.data(config.global.src + currentComponent + '/**/*.json')
-	});
-	// resources data
-	config.global.resources.map( function(currentResource) {
-		hbStream
-			.data(config.global.src + currentResource + '/**/*.json');
-	});
 
 	/**
 	 * reads from pages
