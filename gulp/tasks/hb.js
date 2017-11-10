@@ -111,7 +111,7 @@ gulp.task('static:hb:indexr', function () {
 
 	let hbStream = hbsParser.createHbsGulpStream(null, dataObject);
 
-	gulp.src(config.global.src + '/index.html')
+	return gulp.src(config.global.src + '/index.html')
 		.pipe(hbStream)
 		.pipe(gulp.dest(config.global.dev));
 
