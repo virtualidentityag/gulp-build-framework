@@ -21,14 +21,14 @@ gulp.task('static:hb', function () {
 
 	//icon data
 	let iconNames = iconParser.getAllIconFileNamesLowerCase(config.global.src + '/_icons/*.svg');
-	let preData = {
-		data: {
-			'icons': iconNames,
-			'package': packageData
-		}
+	let preData = {};
+
+	preData[config.global.dataObject] = {
+		'icons': iconNames,
+		'package': packageData
 	};
 
-	let hbsData = jsonParser.getAllJSONData(config.global.src + '/**/*.json', preData.data);
+	let hbsData = jsonParser.getAllJSONData(config.global.src + '/**/*.json', preData[config.global.dataObject]);
 
 	let hbStream = hbsParser.createHbsGulpStream(
 		[

@@ -6,7 +6,7 @@ const config = require('./../config');
 const getAllJSONData = (glob, externalData) => {
 
 	let dataObject = {};
-	dataObject.data = externalData;
+	dataObject[config.global.dataObject] = externalData;
 
 	let filepaths = globule.find(glob);
 
@@ -29,7 +29,7 @@ const getAllJSONData = (glob, externalData) => {
 		});
 
 		// modfiy object
-		modifyObject(dataObject.data, dirs, content);
+		modifyObject(dataObject[config.global.dataObject], dirs, content);
 	}
 
 	return dataObject;
