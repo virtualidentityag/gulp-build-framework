@@ -22,7 +22,7 @@ gulp.task('useref:assets', function () {
 	var jsFilter = filter(['**/*.js'], {restore: true});
 	var cssFilter = filter(['**/*.css'], {restore: true});
 
-	let hbStream = hb().partials(config.global.src + '/partials/**/*.{html,handlebars,hbs}');
+	let hbStream = hb().partials(config.global.src + '/**/*.hbs');
 
 	return gulp.src(config.global.src + '/resources/_useref.html')
 		.pipe(hbStream)
