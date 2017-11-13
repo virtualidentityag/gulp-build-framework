@@ -24,7 +24,6 @@ module.exports = {
 		components: ['/components'],
 		handlebarsHelper: '/js/handlebars.helper.js',
 		tasks: {
-			angular: true,
 			cleanCss: true,
 			cssStats: true,
 			sass: true,
@@ -34,7 +33,6 @@ module.exports = {
 			image: true,
 			linting: true,
 			markdown: false,
-			typescript: true,
 			uglify: true
 		},
 		externalResources: {},
