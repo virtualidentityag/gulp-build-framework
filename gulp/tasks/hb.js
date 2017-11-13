@@ -65,11 +65,8 @@ gulp.task('static:hb', function () {
 
 
 gulp.task('watch:static:hb', function () {
-	let files = [config.global.src + '/partials/**/*.hbs'];
-
-	config.global.components.forEach(function(currentComponent) {
-		files.push(config.global.src + currentComponent +'/**/*.hbs');
-	});
+	let files = [ config.global.src + '/**/*.hbs',
+		'!' + config.global.src + '/pages/**'];
 
 	watch(files, config.watch, function () {
 		runSequence(
