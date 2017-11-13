@@ -2,7 +2,9 @@ module.exports.register = function (handlebars) {
 	/**
 	 * defines a default variable value, that gets overwritten by context data
 	 */
-	handlebars.registerHelper('def', function (a, b) {return a ? a : b;});
+	handlebars.registerHelper('def', function (a, b) {
+		return a ? a : b;
+	});
 
 	/**
 	 * creates fill text
@@ -42,8 +44,8 @@ module.exports.register = function (handlebars) {
 		}
 
 		let partial = partials[partialName];
-		let partialData = context.hash;
+		let partialData = Object.assign(context, context.hash);
 
-		return partial(partialData);
+		return new handlebars.SafeString(partial(partialData));
 	});
 };
