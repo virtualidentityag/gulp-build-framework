@@ -36,12 +36,14 @@ gulp.task('convertIconsToTtf', function () {
 		iconfontArray = [iconfontArray];
 	}
 
-	return mergeStream(iconfontArray.map(function(currentResource) {
-		return gulp.src(config.global.src + '/_icons/*.svg')
-			.pipe(iconfontCss(currentResource))
-			.pipe(svgicons2svgfont(config.iconfont))
-			.pipe(svg2ttf())
-			.pipe(gulp.dest(config.global.dev + '/resources/fonts/icons/'));
+	return mergeStream(iconfontArray.map(function(currentIconResource) {
+		return mergeStream(config.global.resources.map( function(currentResource, index) {
+			return gulp.src(config.global.src + currentResource + '/icons/*.svg')
+				.pipe(iconfontCss(currentIconResource))
+				.pipe(svgicons2svgfont(config.iconfont))
+				.pipe(svg2ttf())
+				.pipe(gulp.dest(config.global.dev + currentResource + '/fonts/icons/'));
+		}));
 	}));
 
 });
@@ -64,14 +66,17 @@ gulp.task('convertTtfToWoff', function () {
 
 gulp.task('watch:icons', function() {
 
-	watch(config.global.src + '/_icons/*.svg', config.watch, function () {
-		runSequence(
-			'iconfont',
-			[
-				'static:hb',
-				'resources:sass'
-			]
-		);
+	config.global.resources.map( function(currentResource) {
+
+		watch(config.global.src + currentResource + '/icons/*.svg', config.watch, function () {
+			runSequence(
+				'iconfont',
+				[
+					'static:hb',
+					'resources:sass'
+				]
+			);
+		});
 	});
 
 });

@@ -22,8 +22,8 @@ const jsonParser = require('./../lib/json-parser');
 
 gulp.task('static:hb', function () {
 
-	//icon data
-	let iconNames = iconParser.getAllIconFileNamesLowerCase(config.global.src + '/_icons/*.svg');
+	//icon data, only used for demo...
+	let iconNames = iconParser.getAllIconFileNamesLowerCase(config.global.src + '/resources/icons/*.svg');
 	let preData = {};
 
 	preData[config.global.dataObject] = {
