@@ -65,8 +65,11 @@ gulp.task('static:hb', function () {
 
 
 gulp.task('watch:static:hb', function () {
-	let files = [ config.global.src + '/**/*.hbs',
-		'!' + config.global.src + '/pages/**'];
+	let files = [
+		config.global.src + '/**/*.hbs',
+		config.global.src + '/**/*.json',
+		'!' + config.global.src + '/pages/**'
+	];
 
 	watch(files, config.watch, function () {
 		runSequence(
