@@ -34,6 +34,14 @@ module.exports.register = function (handlebars) {
 	});
 
 	/**
+	 * stringify an json/js object for debugging
+	 */
+	handlebars.registerHelper('parseJSON', function(data, options) {
+
+		return options.fn(JSON.parse(data));
+	});
+
+	/**
 	 * include a partial
 	 */
 	handlebars.registerHelper('include', function(partialName, context) {
