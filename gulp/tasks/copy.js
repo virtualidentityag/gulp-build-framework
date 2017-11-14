@@ -90,6 +90,43 @@ gulp.task('copy:dev:npm:css', function () {
 	}));
 });
 
+/**
+ * backwards compatibility for bower components
+ * dev copy task
+ */
+gulp.task('copy:dev:npm:bower', function () {
+	return mergeStream(config.global.resources.map( function(currentResource) {
+		var object = config.global.bowerResources;
+
+		return mergeStream(Object.keys(object).map(function(key, index) {
+			if( typeof object[key] === 'string' ) {
+				object[key] = [object [key]];
+			}
+
+			return mergeStream(object[key].map(function(file) {
+				let paths = file.split('/');
+				paths.pop();
+
+				let filePath = path.join(key, ...paths);
+
+				return gulp.src(config.global.node + '/' + key + '/' + file)
+					.pipe(gulp.dest(config.global.dev + currentResource + '/bower_components/' + filePath));
+			}));
+		}));
+	}));
+});
+
+/**
+ * backwards compatibility for bower
+ * dist copy task
+ */
+gulp.task('copy:dist:bower', function () {
+
+	return gulp.src(config.global.dev + '/resources/bower_components/**/*')
+		.pipe(gulp.dest(config.global.dist + '/resources/bower_components/'));
+
+});
+
 gulp.task('copy:dist:flash', function () {
 
 	return mergeStream(config.global.resources.map( function(currentResource) {
@@ -160,7 +197,6 @@ gulp.task('copy:dist:hbs', function () {
 	}));
 
 });
-
 
 gulp.task('watch:components:js', function() {
 	config.global.components.forEach(function(currentComponent) {

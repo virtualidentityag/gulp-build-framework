@@ -26,7 +26,8 @@ gulp.task('build:dev', function (callback) {
 			'eslint:components',
 			'iconfont',
 			'copy:dev:npm:js',
-			'copy:dev:npm:css'
+			'copy:dev:npm:css',
+			'copy:dev:npm:bower'
 		],
 		[
 			'handlebars'
@@ -72,7 +73,8 @@ gulp.task('build', function (callback) {
 			'copy:dist:assets',
 			'copy:dist:css',
 			'copy:dist:mock',
-			'copy:dist:hbs'
+			'copy:dist:hbs',
+			'copy:dist:bower'
 		],
 		[
 			'uglify:resources:dist',

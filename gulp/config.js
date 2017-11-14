@@ -36,6 +36,7 @@ module.exports = {
 			uglify: true
 		},
 		externalResources: {},
+		bowerResources: {},
 		reactEntryPoints: []
 	},
 
