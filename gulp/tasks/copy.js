@@ -53,9 +53,10 @@ gulp.task('copy:dist:ts', function () {
 });
 
 gulp.task('copy:dev:npm:js', function () {
-	return mergeStream(config.global.resources.map( function(currentResource) {
-		var object = config.global.externalResources;
+	var object = config.global.externalResources;
+	if (Object.keys(object).length === 0 && object.constructor === Object) return;
 
+	return mergeStream(config.global.resources.map( function(currentResource) {
 		return mergeStream(Object.keys(object).map(function(key, index) {
 			if( typeof object[key] === 'string' ) {
 				object[key] = [object [key]];
@@ -72,9 +73,10 @@ gulp.task('copy:dev:npm:js', function () {
 });
 
 gulp.task('copy:dev:npm:css', function () {
-	return mergeStream(config.global.resources.map( function(currentResource) {
-		var object = config.global.externalResources;
+	var object = config.global.externalResources;
+	if (Object.keys(object).length === 0 && object.constructor === Object) return;
 
+	return mergeStream(config.global.resources.map( function(currentResource) {
 		return mergeStream(Object.keys(object).map(function(key, index) {
 			if( typeof object[key] === 'string' ) {
 				object[key] = [object [key]];
@@ -95,9 +97,11 @@ gulp.task('copy:dev:npm:css', function () {
  * dev copy task
  */
 gulp.task('copy:dev:npm:bower', function () {
-	return mergeStream(config.global.resources.map( function(currentResource) {
-		var object = config.global.bowerResources;
+	var object = config.global.bowerResources;
 
+	if (Object.keys(object).length === 0 && object.constructor === Object) return;
+
+	return mergeStream(config.global.resources.map( function(currentResource) {
 		return mergeStream(Object.keys(object).map(function(key, index) {
 			if( typeof object[key] === 'string' ) {
 				object[key] = [object [key]];
