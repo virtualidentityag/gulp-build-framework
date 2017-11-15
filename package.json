@@ -46,6 +46,7 @@
     "gulp-jshint": "2.0.4",
     "gulp-jsonlint": "1.2.0",
     "gulp-less": "3.3.0",
+    "gulp-line-ending-corrector": "1.0.1",
     "gulp-livereload": "3.8.1",
     "gulp-markdown": "1.2.0",
     "gulp-modernizr": "1.0.0-alpha",
