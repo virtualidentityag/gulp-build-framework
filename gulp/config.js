@@ -124,9 +124,9 @@ module.exports = {
 	},
 
 	lec: {
-		verbose:true,
+		verbose: false,
 		eolc: 'LF',
-		encoding:'utf8'
+		encoding: 'utf8'
 	},
 
 	livereload: {
