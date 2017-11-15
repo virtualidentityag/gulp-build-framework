@@ -123,6 +123,12 @@ module.exports = {
 		verbose: true
 	},
 
+	lec: {
+		verbose:true,
+		eolc: 'LF',
+		encoding:'utf8'
+	},
+
 	livereload: {
 		port: 35729
 	},
