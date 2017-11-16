@@ -4,11 +4,13 @@ var hb = require('gulp-hb');
 var filter = require('gulp-filter');
 var uglify = require('gulp-uglify');
 var cleanCss = require('gulp-clean-css');
+var lec = require('gulp-line-ending-corrector');
 var config = require('./../config');
 
 gulp.task('useref', function () {
 
 	return gulp.src(config.global.dev + '/*.html')
+		.pipe(lec(config.lec))
 		.pipe(useref({
 			noAssets: true
 		}))
@@ -25,6 +27,7 @@ gulp.task('useref:assets', function () {
 	let hbStream = hb().partials(config.global.src + '/**/*.hbs');
 
 	return gulp.src(config.global.src + '/resources/_useref.html')
+		.pipe(lec(config.lec))
 		.pipe(hbStream)
 		.pipe(useref())
 
