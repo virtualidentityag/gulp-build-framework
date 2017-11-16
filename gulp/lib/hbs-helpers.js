@@ -45,15 +45,49 @@ module.exports.register = function (handlebars) {
 	 * include a partial
 	 */
 	handlebars.registerHelper('include', function(partialName, context) {
-		let partials = handlebars.partials;
-
 		if (typeof partialName !== 'string') {
 			return '';
 		}
 
-		let partial = partials[partialName];
-		let partialData = Object.assign(context, context.hash);
+		const partials = handlebars.partials;
+		const partial = partials[partialName];
 
+		// if partial doesn't exist use block failover
+		if (!partial) {
+			return context.fn(this);
+		}
+
+		let jsonData = {};
+		let contextData = {};
+
+		console.log(' ');
+		console.log(' ');
+		console.log(partialName);
+
+		console.log('-------- HASH --------');
+		console.log(context.hash);
+
+		if(context.hash.hasOwnProperty('json')) {
+			jsonData = context.hash.json.split('.').reduce((o,i)=>o[i], this);
+
+			console.log('-------- JSON --------');
+			console.log(jsonData);
+		}
+
+		if(context.hash.hasOwnProperty('context')) {
+			contextData = context.hash.context;
+
+			console.log('-------- CONTEXT --------');
+			console.log(contextData);
+		}
+
+		// TODO Think about order of overwriting sequence!!!
+		const partialData = Object.assign({}, jsonData, contextData, context.hash);
+
+		console.log('-------- MERGED = JSON + CONTEXT + HASH --------');
+		console.log(partialData);
+
+		console.log('################');
 		return new handlebars.SafeString(partial(partialData));
 	});
 };
