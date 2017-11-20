@@ -38,7 +38,7 @@ gulp.task('static:hb', function () {
 			config.global.src + '/**/*.hbs',
 			'!' + config.global.src + '/pages/**'
 		],
-		hbsData
+		hbsData, null, config.global.debug
 	);
 
 	/**
@@ -111,12 +111,12 @@ gulp.task('static:hb:indexr', function () {
 		}
 
 		//parse content data
-		let data = hbsParser.parsePartialData(content, { template: template });
+		let data = hbsParser.parsePartialData(content, { template: template }, null, config.global.debug);
 
 		dataObject.templates.push(data);
 	}
 
-	let hbStream = hbsParser.createHbsGulpStream(null, dataObject);
+	let hbStream = hbsParser.createHbsGulpStream(null, dataObject, null, config.global.debug);
 
 	return gulp.src(config.global.src + '/index.html')
 		.pipe(hbStream)

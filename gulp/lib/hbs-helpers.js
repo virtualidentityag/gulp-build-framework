@@ -1,3 +1,6 @@
+const config = require('./../config');
+const gutil = require('gulp-util');
+
 module.exports.register = function (handlebars) {
 	/**
 	 * defines a default variable value, that gets overwritten by context data
@@ -54,7 +57,7 @@ module.exports.register = function (handlebars) {
 
 		// if partial doesn't exist use block failover
 		if (!partial) {
-			// @TODO add warning with gutil
+			gutil.log(gutil.colors.red('partial not found: block helper fallback will be used'));
 			return context.fn(this);
 		}
 
@@ -62,41 +65,34 @@ module.exports.register = function (handlebars) {
 		let jsonData = {};
 		let contextData = {};
 
-		console.log(' ');
-		console.log(' ');
-		console.log(partialName);
-
-		console.log('-------- HASH --------');
-		console.log(context.hash);
+		if (config.global.debug) {gutil.log(gutil.colors.blue('--- include helper: debug ---'));}
+		if (config.global.debug) {gutil.log(gutil.colors.green('partialName: ' + partialName));}
+		if (config.global.debug) {gutil.log(gutil.colors.green('context.hash: ' + context.hash));}
 
 		if(context.hash.hasOwnProperty('json')) {
 			jsonData = context.hash.json.split('.').reduce((o,i)=>o[i], this);
 
-			console.log('-------- JSON --------');
-			console.log(jsonData);
+			if (config.global.debug) {gutil.log(gutil.colors.green('jsonData: ' + jsonData));}
 		}
 
 		if(context.hash.hasOwnProperty('object')) {
 			objectData = JSON.parse(context.hash.object);
 
-			console.log('-------- OBJECT --------');
-			console.log(objectData);
+			if (config.global.debug) {gutil.log(gutil.colors.green('objectData: ' + objectData));}
 		}
 
 		if(context.hash.hasOwnProperty('context')) {
 			contextData = context.hash.context;
 
-			console.log('-------- CONTEXT --------');
-			console.log(contextData);
+			if (config.global.debug) {gutil.log(gutil.colors.green('contextData: ' + contextData));}
 		}
 
 		// TODO Think about order of overwriting sequence!!!
 		const partialData = Object.assign({}, objectData, jsonData, contextData, context.hash);
 
-		console.log('-------- MERGED = OBJECT + JSON + CONTEXT + HASH --------');
-		console.log(partialData);
+		if (config.global.debug) {gutil.log(gutil.colors.green('MERGED = OBJECT + JSON + CONTEXT + HASH: ' + partialData));}
+		if (config.global.debug) {gutil.log(gutil.colors.blue('--- include helper: debug end ---'));}
 
-		console.log('################');
 		return new handlebars.SafeString(partial(partialData));
 	});
 };

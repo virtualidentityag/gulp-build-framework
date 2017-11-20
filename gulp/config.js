@@ -19,6 +19,7 @@ module.exports = {
 		docs: docs,
 		node: node,
 		isWin: isWin,
+		debug: false,
 		dataObject: 'data',
 		resources: ['/resources'],
 		components: ['/components'],
