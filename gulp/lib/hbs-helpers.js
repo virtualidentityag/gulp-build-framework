@@ -54,6 +54,7 @@ module.exports.register = function (handlebars) {
 
 		// if partial doesn't exist use block failover
 		if (!partial) {
+			// @TODO add warning with gutil
 			return context.fn(this);
 		}
 
