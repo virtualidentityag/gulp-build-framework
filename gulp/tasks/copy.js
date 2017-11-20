@@ -193,6 +193,13 @@ gulp.task('copy:dist:mock', function () {
 
 });
 
+gulp.task('copy:dist:config', function () {
+
+	return gulp.src(config.global.src + '/_config/**/*')
+		.pipe(gulp.dest(config.global.dist + '/_config/'));
+
+});
+
 gulp.task('copy:dist:hbs', function () {
 
 	return mergeStream(config.global.resources.map( function(currentResource) {
