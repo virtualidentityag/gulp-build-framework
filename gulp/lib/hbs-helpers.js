@@ -58,6 +58,7 @@ module.exports.register = function (handlebars) {
 			return context.fn(this);
 		}
 
+		let objectData = {};
 		let jsonData = {};
 		let contextData = {};
 
@@ -75,6 +76,13 @@ module.exports.register = function (handlebars) {
 			console.log(jsonData);
 		}
 
+		if(context.hash.hasOwnProperty('object')) {
+			objectData = JSON.parse(context.hash.object);
+
+			console.log('-------- OBJECT --------');
+			console.log(objectData);
+		}
+
 		if(context.hash.hasOwnProperty('context')) {
 			contextData = context.hash.context;
 
@@ -83,9 +91,9 @@ module.exports.register = function (handlebars) {
 		}
 
 		// TODO Think about order of overwriting sequence!!!
-		const partialData = Object.assign({}, jsonData, contextData, context.hash);
+		const partialData = Object.assign({}, objectData, jsonData, contextData, context.hash);
 
-		console.log('-------- MERGED = JSON + CONTEXT + HASH --------');
+		console.log('-------- MERGED = OBJECT + JSON + CONTEXT + HASH --------');
 		console.log(partialData);
 
 		console.log('################');
