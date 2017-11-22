@@ -12,10 +12,10 @@ const getAllJSONData = (glob, externalData) => {
 
 	for (let index in filepaths) {
 		// read contents
-		let content = JSON.parse(fs.readFileSync(filepaths[index], 'utf8'));
+		const content = JSON.parse(fs.readFileSync(filepaths[index], 'utf8'));
 
 		// normalize path and file name
-		let file = path.parse(filepaths[index]);
+		const file = path.parse(filepaths[index]);
 		let dirs = file.dir.split('/');
 		dirs.push(file.name);
 		dirs.forEach(function(currentDir, index) {

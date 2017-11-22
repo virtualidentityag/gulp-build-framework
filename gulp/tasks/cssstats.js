@@ -1,8 +1,9 @@
-var gulp = require('gulp');
-var tap = require('gulp-tap');
-var gutil = require('gulp-util');
-var cssstats = require('gulp-cssstats');
-var config = require('./../config');
+const gulp = require('gulp');
+const tap = require('gulp-tap');
+const gutil = require('gulp-util');
+const cssstats = require('gulp-cssstats');
+
+const config = require('./../config');
 
 gulp.task('cssstats', function () {
 
@@ -12,8 +13,8 @@ gulp.task('cssstats', function () {
 		])
 			.pipe(cssstats())
 			.pipe(tap(function (file) {
-				var stats = JSON.parse(file.contents.toString());
-				var filepath = file.path.substr(0, file.path.length - 4) + 'css';
+				const stats = JSON.parse(file.contents.toString());
+				const filepath = file.path.substr(0, file.path.length - 4) + 'css';
 
 				gutil.log(gutil.colors.blue('CSS Stats for ' + filepath));
 				gutil.log(gutil.colors.green('Minified: ' + (stats.size / 1024).toFixed(2) + ' KB'));

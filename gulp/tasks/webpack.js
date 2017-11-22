@@ -1,18 +1,15 @@
-var gulp = require('gulp');
-var named = require('vinyl-named');
-var mergeStream = require('merge-stream');
-var watch = require('gulp-watch');
-var gutil = require('gulp-util');
-var rename = require('gulp-rename');
-var runSequence = require('run-sequence');
-var webpackTS = require('webpack');
-var webpackStream = require('webpack-stream');
-var webpackConfig = require('./../../webpack.config.js');
-var config = require('./../config');
+const gulp = require('gulp');
+const named = require('vinyl-named');
+const mergeStream = require('merge-stream');
+const watch = require('gulp-watch');
+const gutil = require('gulp-util');
+const rename = require('gulp-rename');
+const runSequence = require('run-sequence');
+const webpackTS = require('webpack');
+const webpackStream = require('webpack-stream');
 
-/**
- * @TODO fix typing errors
- */
+const webpackConfig = require('./../../webpack.config.js');
+const config = require('./../config');
 
 gulp.task('webpack:resources:ts', function() {
 
@@ -66,7 +63,7 @@ gulp.task('watch:webpack:resources:ts', function () {
 
 	if (config.global.tasks.webpack) {
 		config.global.resources.forEach(function (currentResource) {
-			watch(config.global.src + currentResource + '/ts/**/*.ts', config.watch, function () {
+			return watch(config.global.src + currentResource + '/ts/**/*.ts', config.watch, function () {
 				runSequence(
 					['webpack:resources:ts']
 				);
@@ -80,7 +77,7 @@ gulp.task('watch:webpack:components:ts', function () {
 
 	if (config.global.tasks.webpack) {
 		config.global.components.map( function(currentComponent) {
-			watch(config.global.src + currentComponent + '/**/*.ts', config.watch, function () {
+			return watch(config.global.src + currentComponent + '/**/*.ts', config.watch, function () {
 				runSequence(
 					['webpack:components:ts']
 				);

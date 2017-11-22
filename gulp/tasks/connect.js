@@ -1,9 +1,10 @@
-var gulp = require('gulp');
-var connect = require('gulp-connect');
-var opn = require('opn');
-var cached = require('gulp-cached');
-var watch = require('gulp-watch');
-var config = require('./../config');
+const gulp = require('gulp');
+const connect = require('gulp-connect');
+const opn = require('opn');
+const cached = require('gulp-cached');
+const watch = require('gulp-watch');
+
+const config = require('./../config');
 
 gulp.task('livereload:init', function () {
 
@@ -14,7 +15,7 @@ gulp.task('livereload:init', function () {
 
 gulp.task('livereload', function () {
 
-    watch(config.connect.globs)
+    return watch(config.connect.globs)
         .pipe(cached('livereload'))
         .pipe(connect.reload());
 
@@ -22,7 +23,7 @@ gulp.task('livereload', function () {
 
 gulp.task('connect:open', function () {
 
-	opn('http://localhost:' + config.connect.port);
+	return opn('http://localhost:' + config.connect.port);
 
 });
 

@@ -1,11 +1,12 @@
-var gulp = require('gulp');
-var useref = require('gulp-useref');
-var hb = require('gulp-hb');
-var filter = require('gulp-filter');
-var uglify = require('gulp-uglify');
-var cleanCss = require('gulp-clean-css');
-var lec = require('gulp-line-ending-corrector');
-var config = require('./../config');
+const gulp = require('gulp');
+const useref = require('gulp-useref');
+const hb = require('gulp-hb');
+const filter = require('gulp-filter');
+const uglify = require('gulp-uglify');
+const cleanCss = require('gulp-clean-css');
+const lec = require('gulp-line-ending-corrector');
+
+const config = require('./../config');
 
 gulp.task('useref', function () {
 
@@ -21,8 +22,8 @@ gulp.task('useref', function () {
 
 gulp.task('useref:assets', function () {
 
-	var jsFilter = filter(['**/*.js'], {restore: true});
-	var cssFilter = filter(['**/*.css'], {restore: true});
+	const jsFilter = filter(['**/*.js'], {restore: true});
+	const cssFilter = filter(['**/*.css'], {restore: true});
 
 	let hbStream = hb().partials(config.global.src + '/**/*.hbs');
 

@@ -1,12 +1,13 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
-var mergeStream = require('merge-stream');
-var cached = require('gulp-cached');
-var watch = require('gulp-watch');
-var runSequence = require('run-sequence');
-var config = require('./../config');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const jshint = require('gulp-jshint');
+const stylish = require('jshint-stylish');
+const mergeStream = require('merge-stream');
+const cached = require('gulp-cached');
+const watch = require('gulp-watch');
+const runSequence = require('run-sequence');
+
+const config = require('./../config');
 
 gulp.task('jshint:resources', function () {
 
@@ -49,7 +50,7 @@ gulp.task('watch:jshint:resources', function () {
 
 	if (config.global.tasks.linting) {
 		config.global.resources.forEach(function(currentResource) {
-			watch([
+			return watch([
 				config.global.src + currentResource + '/js/**/*.js',
 				'!' + config.global.src + currentResource + '/js/vendor/**/*.js',
 			], config.watch, function () {
@@ -66,7 +67,7 @@ gulp.task('watch:jshint:components', function () {
 
 	if (config.global.tasks.linting) {
 		config.global.components.forEach(function(currentComponent) {
-			watch([
+			return watch([
 				config.global.src + currentComponent + '/**/*.js',
 				'!' + config.global.src + currentComponent + '/**/vendor/**/*.js'
 			], config.watch, function () {

@@ -1,11 +1,12 @@
-var gulp = require('gulp');
-var mergeStream = require('merge-stream');
-var config = require('./../config');
-var debug = require('gulp-debug');
-var filter = require('gulp-filter');
-var path = require('path');
-var watch = require('gulp-watch');
-var runSequence = require('run-sequence');
+const gulp = require('gulp');
+const mergeStream = require('merge-stream');
+const debug = require('gulp-debug');
+const filter = require('gulp-filter');
+const path = require('path');
+const watch = require('gulp-watch');
+const runSequence = require('run-sequence');
+
+const config = require('./../config');
 
 gulp.task('copy:dev:js', function () {
 
@@ -53,7 +54,7 @@ gulp.task('copy:dist:ts', function () {
 });
 
 gulp.task('copy:dev:npm:js', function () {
-	var object = config.global.externalResources;
+	let object = config.global.externalResources;
 	if (Object.keys(object).length === 0 && object.constructor === Object) return;
 
 	return mergeStream(config.global.resources.map( function(currentResource) {
@@ -73,7 +74,7 @@ gulp.task('copy:dev:npm:js', function () {
 });
 
 gulp.task('copy:dev:npm:css', function () {
-	var object = config.global.externalResources;
+	let object = config.global.externalResources;
 	if (Object.keys(object).length === 0 && object.constructor === Object) return;
 
 	return mergeStream(config.global.resources.map( function(currentResource) {
@@ -97,7 +98,7 @@ gulp.task('copy:dev:npm:css', function () {
  * dev copy task
  */
 gulp.task('copy:dev:npm:bower', function () {
-	var object = config.global.bowerResources;
+	let object = config.global.bowerResources;
 
 	if (Object.keys(object).length === 0 && object.constructor === Object) return;
 

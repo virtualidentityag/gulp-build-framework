@@ -1,9 +1,10 @@
-var gulp = require('gulp');
-var size = require('gulp-size');
-var cleanCss = require('gulp-clean-css');
-var mergeStream = require('merge-stream');
-var config = require('./../config');
-var gutil = require('gulp-util');
+const gulp = require('gulp');
+const size = require('gulp-size');
+const cleanCss = require('gulp-clean-css');
+const mergeStream = require('merge-stream');
+const gutil = require('gulp-util');
+
+const config = require('./../config');
 
 gulp.task('cleanCss:resources:dist', function () {
 

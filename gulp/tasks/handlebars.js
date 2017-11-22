@@ -1,22 +1,23 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var path = require('path');
-var handlebars = require('gulp-handlebars');
-var wrap = require('gulp-wrap');
-var declare = require('gulp-declare');
-var concat = require('gulp-concat');
-var mergeStream = require('merge-stream');
-var plumber = require('gulp-plumber');
-var watch = require('gulp-watch');
-var runSequence = require('run-sequence');
-var config = require('./../config');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const path = require('path');
+const handlebars = require('gulp-handlebars');
+const wrap = require('gulp-wrap');
+const declare = require('gulp-declare');
+const concat = require('gulp-concat');
+const mergeStream = require('merge-stream');
+const plumber = require('gulp-plumber');
+const watch = require('gulp-watch');
+const runSequence = require('run-sequence');
+
+const config = require('./../config');
 
 gulp.task('handlebars', function () {
 
 	if (config.global.tasks.handlebars) {
 		// Assume all partials start with an underscore
 
-		var partials = mergeStream(config.global.resources.map( function(currentResource, index) {
+		const partials = mergeStream(config.global.resources.map( function(currentResource, index) {
 			return gulp.src([
 				config.global.src + currentResource + '/hbs/**/_*.hbs',
 				config.global.src + config.global.components[index] + '/**/hbs/**/_*.hbs',
@@ -35,7 +36,7 @@ gulp.task('handlebars', function () {
 				}, {}));
 		}));
 
-		var templates =  mergeStream(config.global.resources.map( function(currentResource, index) {
+		const templates =  mergeStream(config.global.resources.map( function(currentResource, index) {
 			return gulp.src([
 				config.global.src + currentResource + '/hbs/**/[^_]*.hbs',
 				config.global.src + config.global.components[index] + '/**/hbs/**/[^_]*.hbs'

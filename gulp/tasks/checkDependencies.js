@@ -1,12 +1,12 @@
-var gulp = require('gulp');
-var dependencies = require('check-dependencies');
-var gutil = require('gulp-util');
-var config = require('./../config');
+const gulp = require('gulp');
+const dependencies = require('check-dependencies');
+const gutil = require('gulp-util');
+const config = require('./../config');
 
 
 gulp.task('checkDependencies', function () {
 
-	var output = dependencies.sync(config.checkDependencies);
+	const output = dependencies.sync(config.checkDependencies);
 	if (output.status === 1) {
 
 		if (output.error.length > 0) {

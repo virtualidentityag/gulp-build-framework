@@ -1,10 +1,10 @@
-var gulp = require('gulp');
-var htmlhint = require("gulp-htmlhint");
-var cached = require('gulp-cached');
-var watch = require('gulp-watch');
-var runSequence = require('run-sequence');
-var config = require('./../config');
+const gulp = require('gulp');
+const htmlhint = require("gulp-htmlhint");
+const cached = require('gulp-cached');
+const watch = require('gulp-watch');
+const runSequence = require('run-sequence');
 
+const config = require('./../config');
 
 gulp.task('htmlhint', function () {
 
@@ -17,7 +17,7 @@ gulp.task('htmlhint', function () {
 
 gulp.task('watch:html', function () {
 
-	watch([
+	return watch([
 		config.global.dev + '/*.html'
 	], config.watch, function () {
 		runSequence('htmlhint')

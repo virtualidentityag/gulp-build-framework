@@ -1,14 +1,15 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var iconfontCss = require('gulp-iconfont-css');
-var svgicons2svgfont = require('gulp-svgicons2svgfont');
-var svg2ttf = require('gulp-svg2ttf');
-var ttf2eot = require('gulp-ttf2eot');
-var ttf2woff = require('gulp-ttf2woff');
-var watch = require('gulp-watch');
-var config = require('./../config');
-var runSequence = require('run-sequence');
-var mergeStream = require('merge-stream');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const iconfontCss = require('gulp-iconfont-css');
+const svgicons2svgfont = require('gulp-svgicons2svgfont');
+const svg2ttf = require('gulp-svg2ttf');
+const ttf2eot = require('gulp-ttf2eot');
+const ttf2woff = require('gulp-ttf2woff');
+const watch = require('gulp-watch');
+const runSequence = require('run-sequence');
+const mergeStream = require('merge-stream');
+
+const config = require('./../config');
 
 gulp.task('iconfont', function (callback) {
 
@@ -30,7 +31,7 @@ gulp.task('iconfont', function (callback) {
 
 gulp.task('convertIconsToTtf', function () {
 
-	var iconfontArray = config.iconfontCss;
+	let iconfontArray = config.iconfontCss;
 
 	if (!Array.isArray(iconfontArray)) {
 		iconfontArray = [iconfontArray];
@@ -68,7 +69,7 @@ gulp.task('watch:icons', function() {
 
 	config.global.resources.map( function(currentResource) {
 
-		watch(config.global.src + currentResource + '/icons/*.svg', config.watch, function () {
+		return watch(config.global.src + currentResource + '/icons/*.svg', config.watch, function () {
 			runSequence(
 				'iconfont',
 				[

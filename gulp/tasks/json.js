@@ -1,15 +1,16 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var jsonlint = require('gulp-jsonlint');
-var cached = require('gulp-cached');
-var watch = require('gulp-watch');
-var runSequence = require('run-sequence');
-var config = require('./../config');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const jsonlint = require('gulp-jsonlint');
+const cached = require('gulp-cached');
+const watch = require('gulp-watch');
+const runSequence = require('run-sequence');
+
+const config = require('./../config');
 
 gulp.task('lint:json', function () {
 
 	if (config.global.tasks.linting) {
-		return gulp.src(config.global.src + "/_mock/**/*.json")
+		return gulp.src(config.global.src + "/**/*.json")
 			.pipe(cached('json'))
 			.pipe(jsonlint())
 			.pipe(jsonlint.reporter());
@@ -23,8 +24,8 @@ gulp.task('lint:json', function () {
 gulp.task('watch:json', function () {
 
 	if (config.global.tasks.linting) {
-		watch([
-			config.global.src + '/_mock/**/*.json'
+		return watch([
+			config.global.src + '/**/*.json'
 		], config.watch, function () {
 			runSequence('lint:json');
 		});

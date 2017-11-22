@@ -136,8 +136,6 @@ module.exports = {
 		port: 35729
 	},
 
-	markdown: {},
-
 	modernizr: {
 		options: [
 			"setClasses",

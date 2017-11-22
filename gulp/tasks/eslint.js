@@ -1,11 +1,12 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var eslint = require('gulp-eslint');
-var cached = require('gulp-cached');
-var watch = require('gulp-watch');
-var mergeStream = require('merge-stream');
-var runSequence = require('run-sequence');
-var config = require('./../config');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const eslint = require('gulp-eslint');
+const cached = require('gulp-cached');
+const watch = require('gulp-watch');
+const mergeStream = require('merge-stream');
+const runSequence = require('run-sequence');
+
+const config = require('./../config');
 
 gulp.task('eslint:resources', function () {
 

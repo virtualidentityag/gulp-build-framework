@@ -95,7 +95,6 @@ gulp.task('build', function (callback) {
 		[
 			'inject',
 			'clean:useref',
-			'markdown',
 			'cssstats'
 		],
 		callback
